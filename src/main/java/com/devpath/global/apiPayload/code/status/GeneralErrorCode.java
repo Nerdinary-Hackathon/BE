@@ -23,6 +23,9 @@ public enum GeneralErrorCode implements BaseErrorCode {
     // 검색
     PAGE_OUT_OF_RANGE(HttpStatus.BAD_REQUEST,"SEARCH_4001","요청한 페이지가 전체 페이지 수를 초과합니다."),
 
+    // 명함 교환
+    FOLLOW_ALREADY_EXISTED(HttpStatus.BAD_REQUEST,"FOLLOW_400","이미 추가한 명함입니다"),
+    
      // 기본 에러
     _BAD_REQUEST(HttpStatus.BAD_REQUEST, "COMMON_400", "잘못된 요청입니다."),
     _UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "COMMON_401", "인증이 필요합니다."),

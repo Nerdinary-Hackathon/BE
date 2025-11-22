@@ -1,15 +1,15 @@
 package com.devpath.domain.user.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "follows",
        uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "follower_id"}))
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder
+@AllArgsConstructor
 public class Follow {
 
    @Id
