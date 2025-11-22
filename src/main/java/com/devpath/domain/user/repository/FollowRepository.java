@@ -1,6 +1,7 @@
 package com.devpath.domain.user.repository;
 
 import com.devpath.domain.user.entity.Follow;
+import com.devpath.domain.user.entity.User;
 import com.devpath.domain.user.enums.JobGroup;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
@@ -20,4 +21,5 @@ public interface FollowRepository extends JpaRepository<Follow, Long> {
 
     boolean existsByUser_IdAndFollower_Id(Long userId, Long followerId);
 
+    Long user(User user);
 }

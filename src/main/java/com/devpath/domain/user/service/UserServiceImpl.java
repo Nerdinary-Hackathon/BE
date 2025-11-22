@@ -46,22 +46,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
-    public MyCardRes getMyCardRes(String userId) {
-        Long uid = Long.valueOf(userId);
-        return UserConverter.toMyCardRes(checkUser(uid));
+    public MyCardRes getMyCardRes(Long userId) {
+        return UserConverter.toMyCardRes(checkUser(userId));
     }
 
     @Override
     @Transactional(readOnly = true)
-    public CursorResponseDto<CardPrevRes> getCardPrevRes(String userId, String cursor, Integer size,
+    public CursorResponseDto<CardPrevRes> getCardPrevRes(Long userId, Long cursor, Integer size,
             JobGroup jobGroup) {
-
-        Long uid = Long.valueOf(userId);
-        Long cursorId = cursor != null ? Long.valueOf(cursor) : null;
 
         Pageable pageable = PageRequest.of(0, size, Sort.by(Sort.Direction.DESC, "id"));
 
-        Slice<Follow> followSlice = followRepository.findNextByCursor(uid, cursorId, jobGroup, pageable);
+        Slice<Follow> followSlice = followRepository.findNextByCursor(userId, cursor, jobGroup, pageable);
 
         Slice<CardPrevRes> result = followSlice.map(f -> UserConverter.toCardPrevRes(f.getFollower()));
 
@@ -73,14 +69,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Transactional
-    public void exchangeCard(String userId, String cardCode) {
-        Long uid = Long.valueOf(userId);
-        Long fid = Long.valueOf(cardCode);
+    public void exchangeCard(Long userId, Long cardCode) {
 
-        User user = checkUser(uid);
-        User friend = checkUser(fid);
+        User user = checkUser(userId);
+        User friend = checkUser(cardCode);
 
-        if (followRepository.existsByUser_IdAndFollower_Id(uid, fid)) {
+        if (followRepository.existsByUser_IdAndFollower_Id(userId, cardCode)) {
             throw new GlobalHandler(GeneralErrorCode.FOLLOW_ALREADY_EXISTED);
         }
 

@@ -31,7 +31,7 @@ public class UserController implements UserControllerDocs {
      * @return ApiResponse<MyCardRes>
      */
     @GetMapping("/{user-Id}")
-    public ApiResponse<MyCardRes> getCard(@PathVariable("user-Id") String userId) {
+    public ApiResponse<MyCardRes> getCard(@PathVariable("user-Id") Long userId) {
         return ApiResponse.onSuccess(GeneralSuccessCode._OK, userService.getMyCardRes(userId));
     }
 
@@ -46,8 +46,8 @@ public class UserController implements UserControllerDocs {
      */
     @Override
     @GetMapping("/cards")
-    public ApiResponse<CursorResponseDto<CardPrevRes>> getCards(@RequestHeader String userId,
-            @RequestParam(required = false) String cursor,
+    public ApiResponse<CursorResponseDto<CardPrevRes>> getCards(@RequestHeader Long userId,
+            @RequestParam(required = false) Long cursor,
             @RequestParam(required = false, defaultValue = "10") Integer size,
             @RequestParam(required = false) JobGroup jobGroup) {
         return ApiResponse.onSuccess(GeneralSuccessCode._OK,
@@ -63,7 +63,7 @@ public class UserController implements UserControllerDocs {
      */
     @PostMapping("/exchange-card")
     @Override
-    public ResponseEntity<ApiResponse<Void>> exchangeCard(@RequestHeader String userId, @RequestParam String cardCode) {
+    public ResponseEntity<ApiResponse<Void>> exchangeCard(@RequestHeader Long userId, @RequestParam Long cardCode) {
         userService.exchangeCard(userId, cardCode);
 
         return ResponseEntity.status(HttpStatus.CREATED)
