@@ -1,11 +1,11 @@
-# JDK 21 기반 공식 이미지 사용
-FROM openjdk:17-jdk-slim
+# JDK 17 기반 공식 이미지 사용
+FROM eclipse-temurin:17-jdk-jammy
 
 # 컨테이너 내 작업 디렉토리 설정
 WORKDIR /app
 
 # 빌드된 JAR 파일을 컨테이너에 복사
-COPY build/libs/project-0.0.1-SNAPSHOT.jar intro.jar
+COPY build/libs/devpath-backend-1.0.0.jar intro.jar
 
 # (필요시 포트 노출)
 EXPOSE 8080
