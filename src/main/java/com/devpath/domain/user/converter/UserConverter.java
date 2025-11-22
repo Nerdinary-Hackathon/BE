@@ -5,9 +5,13 @@ import com.devpath.domain.user.dto.MyCardRes;
 import com.devpath.domain.user.dto.UserProfileRequest;
 import com.devpath.domain.user.entity.TechStack;
 import com.devpath.domain.user.entity.User;
+import com.devpath.domain.user.enums.TechStackName;
+
+import java.util.List;
 
 public class UserConverter {
     public static MyCardRes toMyCardRes(User user) {
+        List<TechStack> techStacks = user.getTechStacks();
         return MyCardRes.builder()
                 .profileImg(user.getProfileImageUrl())
                 .nickName(user.getNickname())
@@ -16,6 +20,7 @@ public class UserConverter {
                 .phoneNumber(user.getPhone())
                 .link(user.getLink())
                 .level(user.getLevel().toString())
+                .techStacks(techStacks.stream().map(TechStack::getTechStackName).map(TechStackName::getDescription).toList())
                 .build();
     }
 
