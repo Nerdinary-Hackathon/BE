@@ -1,16 +1,17 @@
 package com.devpath.domain.user.entity;
 
+import com.devpath.domain.user.enums.JobGroup;
+import com.devpath.domain.user.enums.Level;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -20,56 +21,41 @@ import java.util.UUID;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "user_id")
-    private UUID userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id",nullable = false)
+    private Long userId;
 
-    @Column(nullable = false, unique = true)
-    private String email;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-    @Column(name = "password_hash", nullable = true) // Nullable for OAuth2 users
-    private String passwordHash;
-
+    @Column(name = "nickname", nullable = false, unique = true)
     private String nickname;
 
-    @Column(name = "github_username")
-    private String githubUsername;
+    @Enumerated(EnumType.STRING)
+    private JobGroup jobGroup;
 
-    @Column(columnDefinition = "TEXT")
-    private String githubTokenEncrypted;
+    @Enumerated(EnumType.STRING)
+    private Level level;
 
     @Column(name = "profile_image_url")
     private String profileImageUrl;
 
-    @Enumerated(EnumType.STRING)
-    private Role role; // USER, ADMIN
+    @Column(name = "link")
+    private String link;
 
-    private String provider; // google, github
+    @Column(nullable = false, unique = true)
+    private String email;
 
-    private String providerId; // sub, id
+    @Column(name = "phone_number")
+    private String phone;
+
+    @Column(name = "UUID")
+    private String uuid;
 
     @CreatedDate
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
-    @LastModifiedDate
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-
-    @Builder
-    public User(String email, String passwordHash, String nickname, Role role, String provider, String providerId,
-            String profileImageUrl) {
-        this.email = email;
-        this.passwordHash = passwordHash;
-        this.nickname = nickname;
-        this.role = role != null ? role : Role.USER;
-        this.provider = provider;
-        this.providerId = providerId;
-        this.profileImageUrl = profileImageUrl;
-    }
-
-    public void updateGithubInfo(String githubUsername, String githubTokenEncrypted) {
-        this.githubUsername = githubUsername;
-        this.githubTokenEncrypted = githubTokenEncrypted;
-    }
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TechStack> techStacks = new ArrayList<>();
 }

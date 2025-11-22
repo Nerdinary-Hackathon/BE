@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/umc9th
+    url: jdbc:mysql://localhost:3306/intro
     username: root
-    password: root1234!@
+    password: rhkrwogus1!
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: false
@@ -10,7 +10,7 @@ spring:
     properties:
       hibernate:
         hbm2ddl:
-          auto: update
+          auto: create
         format_sql: false
         use_sql_comments: true
         default_batch_fetch_size: 1000
