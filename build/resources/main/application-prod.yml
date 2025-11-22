@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST}:5432/devpath_prod
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+  
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+
+worker:
+  fastapi:
+    base-url: http://fastapi-worker:8001
+
+jwt:
+  secret: ${JWT_SECRET}
+
+logging:
+  level:
+    com.devpath: INFO

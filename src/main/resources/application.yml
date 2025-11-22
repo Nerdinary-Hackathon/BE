@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: devpath-backend
+  profiles:
+    active: dev
