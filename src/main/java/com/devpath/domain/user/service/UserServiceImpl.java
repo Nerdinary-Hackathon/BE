@@ -1,13 +1,15 @@
 package com.devpath.domain.user.service;
 
 import com.devpath.domain.user.dto.UserProfileRequest;
-import com.devpath.domain.user.entity.TechStack;
+
 import com.devpath.domain.user.converter.UserConverter;
 import com.devpath.domain.user.dto.CardPrevRes;
 import com.devpath.domain.user.dto.MyCardRes;
 import com.devpath.domain.user.entity.Follow;
+import com.devpath.domain.user.entity.TechStack;
 import com.devpath.domain.user.entity.User;
 import com.devpath.domain.user.enums.JobGroup;
+import com.devpath.domain.user.enums.TechStackName;
 import com.devpath.domain.user.repository.FollowRepository;
 import com.devpath.domain.user.repository.UserRepository;
 import com.devpath.global.apiPayload.code.status.GeneralErrorCode;
@@ -21,6 +23,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -39,26 +42,8 @@ public class UserServiceImpl implements UserService {
         }
 
         // User 엔티티 생성
-        User user = User.builder()
-                .name(request.getName())
-                .nickname(request.getNickname())
-                .email(request.getEmail())
-                .phone(request.getPhone())
-                .link(request.getLink())
-                .jobGroup(request.getJobGroup())
-                .level(request.getLevel())
-                .build();
+        User user = UserConverter.toUser(request);
 
-        // TechStack 엔티티들 생성 및 연결
-        request.getTechStackNames().forEach(techStackName -> {
-            TechStack techStack = TechStack.builder()
-                    .user(user)
-                    .techStackName(techStackName)
-                    .build();
-            user.addTechStack(techStack);
-        });
-
-        // User 저장 (TechStack은 cascade로 함께 저장됨)
         return userRepository.save(user);
     }
 
@@ -71,7 +56,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
-    public CursorResponseDto<CardPrevRes> getCardPrevRes(String userId, String cursor, Integer size, JobGroup jobGroup) {
+    public CursorResponseDto<CardPrevRes> getCardPrevRes(String userId, String cursor, Integer size,
+            JobGroup jobGroup) {
 
         Long uid = Long.valueOf(userId);
         Long cursorId = cursor != null ? Long.valueOf(cursor) : null;
@@ -97,7 +83,7 @@ public class UserServiceImpl implements UserService {
         User user = checkUser(uid);
         User friend = checkUser(fid);
 
-        if(followRepository.existsByUser_IdAndFollower_Id(uid, fid)){
+        if (followRepository.existsByUser_IdAndFollower_Id(uid, fid)) {
             throw new GlobalHandler(GeneralErrorCode.FOLLOW_ALREADY_EXISTED);
         }
 
