@@ -91,7 +91,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Transactional
-    public Void exchangeCard(String userId, String cardCode) {
+    public void exchangeCard(String userId, String cardCode) {
         Long uid = Long.valueOf(userId);
         Long fid = Long.valueOf(cardCode);
 
@@ -111,8 +111,6 @@ public class UserServiceImpl implements UserService {
                 .user(friend)
                 .follower(user)
                 .build());
-
-        return null;
     }
 
     private User checkUser(Long uid) {

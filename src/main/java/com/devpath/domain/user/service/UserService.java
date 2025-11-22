@@ -11,6 +11,6 @@ public interface UserService {
     MyCardRes getMyCardRes(String userId);
     CursorResponseDto<CardPrevRes> getCardPrevRes(String userId, String cursor, Integer size, JobGroup jobGroup);
 
-    Void exchangeCard(String userId, String cardCode);
+    void exchangeCard(String userId, String cardCode);
     User createProfile(UserProfileRequest request);
 }

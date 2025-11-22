@@ -44,9 +44,11 @@ public class UserController implements UserControllerDocs{
     @PostMapping("/exchange-card")
     @Override
     public ResponseEntity<ApiResponse<Void>> exchangeCard(@RequestHeader String userId, @RequestParam String cardCode) {
+        userService.exchangeCard(userId, cardCode);
+
         return ResponseEntity.status(HttpStatus.CREATED)
                         .body(
-                ApiResponse.onSuccess(GeneralSuccessCode._CREATED, userService.exchangeCard(userId, cardCode)));
+                ApiResponse.onSuccess(GeneralSuccessCode._CREATED, null));
     }
 
     @Override
