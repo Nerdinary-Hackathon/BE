@@ -12,6 +12,10 @@ public class UserConverter {
                 .profileImg(user.getProfileImageUrl())
                 .nickName(user.getNickname())
                 .jobGroup(user.getJobGroup().toString())
+                .email(user.getEmail())
+                .phoneNumber(user.getPhone())
+                .link(user.getLink())
+                .level(user.getLevel().toString())
                 .build();
     }
 
@@ -20,6 +24,7 @@ public class UserConverter {
                 .userId(user.getId())
                 .profileImg(user.getProfileImageUrl())
                 .jobGroup(user.getJobGroup().toString())
+                .nickName(user.getNickname())
                 .build();
     }
 
