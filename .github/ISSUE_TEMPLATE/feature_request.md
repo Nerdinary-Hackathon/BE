@@ -1,7 +1,7 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: "[Feat] 브랜칩 번호 - 제목"
+title: "[Feat] 이슈번호/제목"
 labels: ''
 assignees: ''
 
