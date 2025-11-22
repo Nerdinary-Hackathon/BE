@@ -12,7 +12,6 @@ import com.devpath.domain.user.repository.FollowRepository;
 import com.devpath.domain.user.repository.UserRepository;
 import com.devpath.global.apiPayload.code.status.GeneralErrorCode;
 import com.devpath.global.apiPayload.exception.handler.GlobalHandler;
-import com.devpath.global.apiPayload.exception.GeneralException;
 import com.devpath.global.dto.CursorResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -99,7 +98,7 @@ public class UserServiceImpl implements UserService {
         User friend = checkUser(fid);
 
         if(followRepository.existsByUser_IdAndFollower_Id(uid, fid)){
-            throw new GeneralException(GeneralErrorCode.FOLLOW_ALREADY_EXISTED);
+            throw new GlobalHandler(GeneralErrorCode.FOLLOW_ALREADY_EXISTED);
         }
 
         followRepository.save(Follow.builder()
@@ -114,6 +113,6 @@ public class UserServiceImpl implements UserService {
     }
 
     private User checkUser(Long uid) {
-        return userRepository.findById(uid).orElseThrow(() -> new GeneralException(GeneralErrorCode._NO_RESULTS_FOUND));
+        return userRepository.findById(uid).orElseThrow(() -> new GlobalHandler(GeneralErrorCode._NO_RESULTS_FOUND));
     }
 }
