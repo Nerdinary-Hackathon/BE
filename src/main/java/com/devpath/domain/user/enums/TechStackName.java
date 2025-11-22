@@ -6,7 +6,7 @@ import lombok.Getter;
 public enum TechStackName {
 
     REACT("React"),
-    VUEJS("Vue.js"),
+    VUE("Vue.js"),
     NEXTJS("Next.js"),
     TYPESCRIPT("TypeScript"),
     FLUTTER("Flutter"),
