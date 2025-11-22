@@ -15,7 +15,7 @@ public interface UserService {
      * @param userId 조회할 사용자의 ID (PK)
      * @return 본인 명함 정보가 담긴 DTO (MyCardRes)
      */
-    MyCardRes getMyCardRes(String userId);
+    MyCardRes getMyCardRes(Long userId);
 
     /**
      * 사용자가 보유한 명함(팔로우) 목록을 커서 기반 페이징으로 조회합니다.
@@ -27,7 +27,7 @@ public interface UserService {
      * @param jobGroup 필터링할 직군 (전체 조회 시 null)
      * @return 다음 커서 정보와 명함 목록이 담긴 DTO
      */
-    CursorResponseDto<CardPrevRes> getCardPrevRes(String userId, String cursor, Integer size, JobGroup jobGroup);
+    CursorResponseDto<CardPrevRes> getCardPrevRes(Long userId, String cursor, Integer size, JobGroup jobGroup);
 
     /**
      * 다른 사용자와 명함을 교환합니다.
@@ -36,7 +36,7 @@ public interface UserService {
      * @param userId   요청하는 사용자 ID
      * @param cardCode 교환할 상대방의 명함 코드 (User ID)
      */
-    void exchangeCard(String userId, String cardCode);
+    void exchangeCard(Long userId, Long cardCode);
 
     /**
      * 새로운 사용자 프로필을 생성합니다.

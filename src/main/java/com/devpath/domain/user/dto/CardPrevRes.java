@@ -6,6 +6,7 @@ import lombok.Getter;
 @Builder
 @Getter
 public class CardPrevRes {
+    private Long userId;
     private String profileImg;
     private String nickName;
     private String jobGroup;

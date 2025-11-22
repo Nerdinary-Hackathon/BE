@@ -23,14 +23,14 @@ public interface UserControllerDocs {
                         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "명함 조회 성공"),
                         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "COMMON_404: 검색 결과가 없습니다.")
         })
-        ApiResponse<MyCardRes> getCard(String userId);
+        ApiResponse<MyCardRes> getCard(Long userId);
 
         @Operation(summary = "명함 목록 조회", description = "최신순으로 교환한 명함 목록을 조회합니다. (직군을 선택하여 필터링 가능)")
         @ApiResponses({
                         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "명함 목록 조회 성공"),
                         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "COMMON_404: 검색 결과가 없습니다.")
         })
-        ApiResponse<CursorResponseDto<CardPrevRes>> getCards(String userId, String cursor, Integer size,
+        ApiResponse<CursorResponseDto<CardPrevRes>> getCards(Long userId, String cursor, Integer size,
                         JobGroup jobGroup);
 
         @Operation(summary = "명함 교환", description = "명함 코드를 입력하면 명함이 교환됩니다.")
@@ -39,7 +39,7 @@ public interface UserControllerDocs {
                         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "FOLLOW_400: 이미 추가한 명함입니다"),
                         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "COMMON_404: 검색 결과가 없습니다.")
         })
-        ResponseEntity<ApiResponse<Void>> exchangeCard(String userId, String cardCode);
+        ResponseEntity<ApiResponse<Void>> exchangeCard(Long userId, Long cardCode);
 
         @Operation(summary = "프로필 작성", description = "사용자의 프로필 정보를 작성합니다. 모든 필드는 필수이며, 기술 스택은 최소 1개 이상 선택해야 합니다.")
         @ApiResponses({

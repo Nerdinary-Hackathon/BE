@@ -17,6 +17,7 @@ public class UserConverter {
 
     public static CardPrevRes toCardPrevRes(User user) {
         return CardPrevRes.builder()
+                .userId(user.getId())
                 .profileImg(user.getProfileImageUrl())
                 .jobGroup(user.getJobGroup().toString())
                 .build();
