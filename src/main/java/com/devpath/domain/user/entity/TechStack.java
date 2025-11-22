@@ -2,14 +2,14 @@ package com.devpath.domain.user.entity;
 
 import com.devpath.domain.user.enums.TechStackName;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "tech_stacks")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 public class TechStack {
 
     @Id
@@ -24,4 +24,8 @@ public class TechStack {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
