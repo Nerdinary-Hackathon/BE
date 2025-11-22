@@ -2,19 +2,14 @@ package com.devpath.domain.user.contorller;
 
 import com.devpath.domain.user.dto.CardPrevDto;
 import com.devpath.domain.user.dto.MyCardDto;
-import com.devpath.domain.user.entity.User;
+import com.devpath.domain.user.dto.UserProfileRequest;
+import com.devpath.domain.user.dto.UserProfileResponse;
 import com.devpath.global.apiPayload.ApiResponse;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
-
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.core.user.OAuth2User;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Tag(name = "User", description = "사용자 명함 관리 API")
 public interface UserControllerDocs {
@@ -41,4 +36,23 @@ public interface UserControllerDocs {
     })
     ApiResponse<CardPrevDto> getCards();
 
+    @Operation(
+            summary = "프로필 작성",
+            description = "사용자의 프로필 정보를 작성합니다. 모든 필드는 필수이며, 기술 스택은 최소 1개 이상 선택해야 합니다."
+    )
+    @ApiResponses({
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "프로필 작성 성공"),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "유효성 검증 실패"),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "409", description = "이미 존재하는 닉네임 또는 이메일")
+    })
+    ApiResponse<UserProfileResponse> createProfile(
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "프로필 작성 정보",
+                    required = true,
+                    content = @Content(schema = @Schema(implementation = UserProfileRequest.class))
+            )
+            UserProfileRequest request
+    );
+
 }
+

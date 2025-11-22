@@ -14,6 +14,10 @@ public enum GeneralErrorCode implements BaseErrorCode {
     UNEXPECTED_PASSWORD(HttpStatus.NOT_FOUND,"USER_401","비밀번호가 틀렸습니다"),
     UNEXPECTED_TOKEN(HttpStatus.NOT_FOUND,"TOKEN_400","존재하지 않는 토큰 입니다"),
 
+    // 사용자 프로필
+    DUPLICATE_EMAIL(HttpStatus.CONFLICT, "USER_4001", "이미 사용 중인 이메일입니다"),
+    DUPLICATE_NICKNAME(HttpStatus.CONFLICT, "USER_4002", "이미 사용 중인 닉네임입니다"),
+
     // 검색
     PAGE_OUT_OF_RANGE(HttpStatus.BAD_REQUEST,"SEARCH_4001","요청한 페이지가 전체 페이지 수를 초과합니다."),
     NO_RESULT(HttpStatus.NOT_FOUND,"SEARCH_40002","검색 결과가 없습니다."),
