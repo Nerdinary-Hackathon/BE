@@ -2,6 +2,8 @@ package com.devpath.domain.user.converter;
 
 import com.devpath.domain.user.dto.CardPrevRes;
 import com.devpath.domain.user.dto.MyCardRes;
+import com.devpath.domain.user.dto.UserProfileRequest;
+import com.devpath.domain.user.entity.TechStack;
 import com.devpath.domain.user.entity.User;
 
 public class UserConverter {
@@ -18,5 +20,24 @@ public class UserConverter {
                 .profileImg(user.getProfileImageUrl())
                 .jobGroup(user.getJobGroup().toString())
                 .build();
+    }
+
+    public static User toUser(UserProfileRequest request) {
+        User user =  User.builder()
+                .name(request.getName())
+                .nickname(request.getNickname())
+                .email(request.getEmail())
+                .phone(request.getPhone())
+                .link(request.getLink())
+                .jobGroup(request.getJobGroup())
+                .level(request.getLevel())
+                .build();
+
+        // techStackName 리스트를 TechStack으로 변환
+        request.getTechStackNames().stream()
+                .map(techStackName -> TechStack.create(user, techStackName))
+                .forEach(user::addTechStack);
+
+        return user;
     }
 }
