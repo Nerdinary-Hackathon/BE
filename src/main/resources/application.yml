@@ -5,8 +5,8 @@ spring:
   cloud:
     aws:
       region:
-        static: ${AWS_REGION:ap-northeast-2}
+        static: ap-southeast-2
       s3:
-        bucket: ${S3_BUCKET_NAME:devpath-bucket}
+        bucket: teami-intro-bucket
   profiles:
     active: dev
