@@ -36,7 +36,7 @@ public interface UserControllerDocs {
         @Operation(summary = "명함 교환", description = "명함 코드를 입력하면 명함이 교환됩니다.")
         @ApiResponses({
                         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "201", description = "명함 교환 성공"),
-                        @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "FOLLOW_400: 이미 추가한 명함입니다"),
+                        @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "409", description = "FOLLOW_409: 이미 추가한 명함입니다"),
                         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "COMMON_404: 검색 결과가 없습니다.")
         })
         ResponseEntity<ApiResponse<Void>> exchangeCard(Long userId, Long cardCode);

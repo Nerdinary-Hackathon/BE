@@ -3,6 +3,7 @@ package com.devpath.domain.user.dto;
 import com.devpath.domain.user.enums.JobGroup;
 import com.devpath.domain.user.enums.Level;
 import com.devpath.domain.user.enums.TechStackName;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -25,6 +26,7 @@ public class UserProfileRequest {
     private String phone;
 
     @NotBlank(message = "이메일은 필수입니다")
+    @Email(message = "유효한 이메일 형식이 아닙니다")
     private String email;
 
     @NotBlank(message = "링크는 필수입니다")
