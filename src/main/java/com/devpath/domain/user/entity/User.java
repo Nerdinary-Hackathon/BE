@@ -30,7 +30,7 @@ public class User {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "nickname", nullable = false, unique = true)
+    @Column(name = "nickname", nullable = false)
     private String nickname;
 
     @Enumerated(EnumType.STRING)
@@ -58,4 +58,9 @@ public class User {
     @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TechStack> techStacks = new ArrayList<>();
+
+    public void addTechStack(TechStack techStack) {
+        techStacks.add(techStack);
+        techStack.setUser(this);
+    }
 }
