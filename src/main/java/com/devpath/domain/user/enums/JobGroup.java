@@ -1,5 +1,8 @@
 package com.devpath.domain.user.enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum JobGroup {
     PM("기획(PM)"),
     DESIGNER("디자인"),
@@ -14,7 +17,18 @@ public enum JobGroup {
         this.description = description;
     }
 
+    @JsonValue
     public String getDescription() {
         return description;
+    }
+
+    @JsonCreator
+    public static JobGroup from(String value) {
+        for (JobGroup jobGroup : JobGroup.values()) {
+            if (jobGroup.description.equals(value) || jobGroup.name().equals(value)) {
+                return jobGroup;
+            }
+        }
+        throw new IllegalArgumentException("Unknown job group: " + value);
     }
 }
