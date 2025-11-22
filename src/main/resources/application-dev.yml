@@ -1,19 +1,21 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/devpath_dev
-    username: devpath
-    password: devpath123
-    driver-class-name: org.postgresql.Driver
-  
+    url: jdbc:mysql://localhost:3306/umc9th
+    username: root
+    password: root1234!@
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    hibernate:
-      ddl-auto: validate
-    show-sql: true
+    show-sql: false
+    generate-ddl: true
     properties:
       hibernate:
-        format_sql: true
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-
+        hbm2ddl:
+          auto: update
+        format_sql: false
+        use_sql_comments: true
+        default_batch_fetch_size: 1000
+        dialect: org.hibernate.dialect.MySQLDialect
+    database: mysql
 
 
 jwt:
