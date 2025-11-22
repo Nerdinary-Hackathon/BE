@@ -6,7 +6,6 @@ import com.devpath.domain.user.dto.CardPrevRes;
 import com.devpath.domain.user.dto.MyCardRes;
 import com.devpath.domain.user.enums.JobGroup;
 import com.devpath.global.dto.CursorResponseDto;
-import org.springframework.web.bind.annotation.RequestHeader;
 
 public interface UserService {
     MyCardRes getMyCardRes(String userId);

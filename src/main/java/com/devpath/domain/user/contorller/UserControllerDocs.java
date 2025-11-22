@@ -3,21 +3,16 @@ package com.devpath.domain.user.contorller;
 import com.devpath.domain.user.dto.CardPrevRes;
 import com.devpath.domain.user.dto.MyCardRes;
 import com.devpath.domain.user.enums.JobGroup;
-import com.devpath.domain.user.dto.CardPrevDto;
-import com.devpath.domain.user.dto.MyCardDto;
 import com.devpath.domain.user.dto.UserProfileRequest;
 import com.devpath.domain.user.dto.UserProfileResponse;
-import com.devpath.domain.user.entity.User;
 import com.devpath.global.apiPayload.ApiResponse;
 import com.devpath.global.dto.CursorResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Tag(name = "User", description = "사용자 명함 관리 API")
 public interface UserControllerDocs {

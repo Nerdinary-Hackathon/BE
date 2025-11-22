@@ -1,10 +1,8 @@
 package com.devpath.domain.user.enums;
 
-import com.devpath.global.apiPayload.code.status.GeneralErrorCode;
-import com.devpath.global.apiPayload.exception.handler.GlobalHandler;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.Getter;
 
+@Getter
 public enum TechStackName {
 
     REACT("React"),
@@ -36,18 +34,4 @@ public enum TechStackName {
         this.description = description;
     }
 
-    @JsonValue
-    public String getDescription() {
-        return description;
-    }
-
-    @JsonCreator
-    public static TechStackName from(String value) {
-        for (TechStackName techStack : TechStackName.values()) {
-            if (techStack.description.equals(value)) {
-                return techStack;
-            }
-        }
-        throw new GlobalHandler(GeneralErrorCode.TECH_STACK_NOT_FOUND);
-    }
 }
