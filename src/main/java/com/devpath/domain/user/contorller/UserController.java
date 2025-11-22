@@ -11,6 +11,8 @@ import com.devpath.global.apiPayload.ApiResponse;
 import com.devpath.global.apiPayload.code.status.GeneralSuccessCode;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,8 +43,10 @@ public class UserController implements UserControllerDocs{
 
     @PostMapping("/exchange-card")
     @Override
-    public ApiResponse<String> exchangeCard(@RequestHeader String userId, @RequestParam String cardCode) {
-        return ApiResponse.onSuccess(GeneralSuccessCode._CREATED, userService.exchangeCard(userId, cardCode));
+    public ResponseEntity<ApiResponse<Void>> exchangeCard(@RequestHeader String userId, @RequestParam String cardCode) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                        .body(
+                ApiResponse.onSuccess(GeneralSuccessCode._CREATED, userService.exchangeCard(userId, cardCode)));
     }
 
     @Override

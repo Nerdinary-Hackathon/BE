@@ -91,35 +91,31 @@ public class UserServiceImpl implements UserService {
     }
 
     @Transactional
-    public String exchangeCard(String userId, String cardCode) {
+    public Void exchangeCard(String userId, String cardCode) {
         Long uid = Long.valueOf(userId);
         Long fid = Long.valueOf(cardCode);
 
         User user = checkUser(uid);
         User friend = checkUser(fid);
 
-        if(!followRepository.existsByUser_IdAndFollower_Id(uid, fid)){
-            followRepository.save(Follow.builder()
-                    .user(user)
-                    .follower(friend)
-                    .build());
-
-            followRepository.save(Follow.builder()
-                    .user(friend)
-                    .follower(user)
-                    .build());
-        }else{
+        if(followRepository.existsByUser_IdAndFollower_Id(uid, fid)){
             throw new GeneralException(GeneralErrorCode.FOLLOW_ALREADY_EXISTED);
         }
 
-        return "명함 교환이 완료되었습니다.";
+        followRepository.save(Follow.builder()
+                .user(user)
+                .follower(friend)
+                .build());
+
+        followRepository.save(Follow.builder()
+                .user(friend)
+                .follower(user)
+                .build());
+
+        return null;
     }
 
     private User checkUser(Long uid) {
-        if(!userRepository.existsById(uid)){
-            throw new GeneralException(GeneralErrorCode.USER_NOT_EXISTED);
-        }else{
-            return userRepository.findById(uid).get();
-        }
+        return userRepository.findById(uid).orElseThrow(() -> new GeneralException(GeneralErrorCode._NO_RESULTS_FOUND));
     }
 }

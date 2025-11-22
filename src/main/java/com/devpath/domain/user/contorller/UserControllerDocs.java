@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
 
 @Tag(name = "User", description = "사용자 명함 관리 API")
 public interface UserControllerDocs {
@@ -48,7 +49,7 @@ public interface UserControllerDocs {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "201", description = "명함 교환 성공"),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "사용자 정보를 찾을 수 없음")
     })
-    ApiResponse<String> exchangeCard(String userId, String cardCode);
+    ResponseEntity<ApiResponse<Void>> exchangeCard(String userId, String cardCode);
 
     @Operation(
             summary = "프로필 작성",
