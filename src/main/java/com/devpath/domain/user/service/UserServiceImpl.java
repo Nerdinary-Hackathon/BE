@@ -12,21 +12,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
-public class UserProfileCommandServiceImpl implements UserProfileCommandService {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
     @Override
+    @Transactional
     public User createProfile(UserProfileRequest request) {
+
         // 이메일 중복 검증
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new GlobalHandler(GeneralErrorCode.DUPLICATE_EMAIL);
-        }
-
-        // 닉네임 중복 검증
-        if (userRepository.existsByNickname(request.getNickname())) {
-            throw new GlobalHandler(GeneralErrorCode.DUPLICATE_NICKNAME);
         }
 
         // User 엔티티 생성
@@ -46,7 +42,7 @@ public class UserProfileCommandServiceImpl implements UserProfileCommandService 
                     .user(user)
                     .techStackName(techStackName)
                     .build();
-            user.getTechStacks().add(techStack);
+            user.addTechStack(techStack);
         });
 
         // User 저장 (TechStack은 cascade로 함께 저장됨)

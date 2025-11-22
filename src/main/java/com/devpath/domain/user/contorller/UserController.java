@@ -5,7 +5,7 @@ import com.devpath.domain.user.dto.MyCardDto;
 import com.devpath.domain.user.dto.UserProfileRequest;
 import com.devpath.domain.user.dto.UserProfileResponse;
 import com.devpath.domain.user.entity.User;
-import com.devpath.domain.user.service.UserProfileCommandService;
+import com.devpath.domain.user.service.UserService;
 import com.devpath.global.apiPayload.ApiResponse;
 import com.devpath.global.apiPayload.code.status.GeneralSuccessCode;
 import jakarta.validation.Valid;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class UserController implements UserControllerDocs{
 
-    private final UserProfileCommandService userProfileCommandService;
+    private final UserService userProfileCommandService;
 
     @Override
     public ApiResponse<MyCardDto> getMyCard() {
