@@ -5,7 +5,7 @@ FROM eclipse-temurin:17-jdk-jammy
 WORKDIR /app
 
 # 빌드된 JAR 파일을 컨테이너에 복사
-COPY build/libs/devpath-backend-1.0.0-SNAPSHOT.jar intro.jar
+COPY build/libs/devpath-backend-1.0.0.jar intro.jar
 
 # (필요시 포트 노출)
 EXPOSE 8080
