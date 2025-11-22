@@ -1,5 +1,12 @@
 spring:
   application:
     name: devpath-backend
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    aws:
+      region:
+        static: ${AWS_REGION:ap-northeast-2}
+      s3:
+        bucket: ${S3_BUCKET_NAME:devpath-bucket}
   profiles:
     active: dev
