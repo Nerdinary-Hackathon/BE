@@ -6,10 +6,8 @@ import com.devpath.domain.user.converter.UserConverter;
 import com.devpath.domain.user.dto.CardPrevRes;
 import com.devpath.domain.user.dto.MyCardRes;
 import com.devpath.domain.user.entity.Follow;
-import com.devpath.domain.user.entity.TechStack;
 import com.devpath.domain.user.entity.User;
 import com.devpath.domain.user.enums.JobGroup;
-import com.devpath.domain.user.enums.TechStackName;
 import com.devpath.domain.user.repository.FollowRepository;
 import com.devpath.domain.user.repository.UserRepository;
 import com.devpath.global.apiPayload.code.status.GeneralErrorCode;
@@ -23,7 +21,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -98,6 +95,11 @@ public class UserServiceImpl implements UserService {
                 .build());
     }
 
+    /**
+     * 사용자를 조회합니다.
+     * @param uid 사용자 ID
+     * @return User
+     */
     private User checkUser(Long uid) {
         return userRepository.findById(uid).orElseThrow(() -> new GlobalHandler(GeneralErrorCode._NO_RESULTS_FOUND));
     }
