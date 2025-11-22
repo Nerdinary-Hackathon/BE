@@ -1,5 +1,5 @@
-# JDK 21 기반 공식 이미지 사용
-FROM openjdk:17-jdk-slim
+# JDK 17 기반 공식 이미지 사용
+FROM eclipse-temurin:17-jdk-slim
 
 # 컨테이너 내 작업 디렉토리 설정
 WORKDIR /app
