@@ -16,6 +16,8 @@ build/
 # BlueJ files
 *.ctxt
 
+# environment variable files
+.env
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
