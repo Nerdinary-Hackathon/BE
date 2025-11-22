@@ -1,5 +1,7 @@
 package com.devpath.domain.user.enums;
 
+import com.devpath.global.apiPayload.code.status.GeneralErrorCode;
+import com.devpath.global.apiPayload.exception.handler.GlobalHandler;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
@@ -27,6 +29,6 @@ public enum Level {
                 return level;
             }
         }
-        throw new IllegalArgumentException("Unknown level: " + value);
+        throw new GlobalHandler(GeneralErrorCode.LEVEL_NOT_FOUND);
     }
 }

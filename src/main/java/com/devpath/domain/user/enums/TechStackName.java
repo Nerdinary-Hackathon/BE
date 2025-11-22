@@ -1,5 +1,7 @@
 package com.devpath.domain.user.enums;
 
+import com.devpath.global.apiPayload.code.status.GeneralErrorCode;
+import com.devpath.global.apiPayload.exception.handler.GlobalHandler;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
@@ -46,6 +48,6 @@ public enum TechStackName {
                 return techStack;
             }
         }
-        throw new IllegalArgumentException("Unknown tech stack: " + value);
+        throw new GlobalHandler(GeneralErrorCode.TECH_STACK_NOT_FOUND);
     }
 }

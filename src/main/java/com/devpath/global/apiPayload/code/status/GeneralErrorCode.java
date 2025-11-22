@@ -15,12 +15,13 @@ public enum GeneralErrorCode implements BaseErrorCode {
     UNEXPECTED_TOKEN(HttpStatus.NOT_FOUND,"TOKEN_400","존재하지 않는 토큰 입니다"),
 
     // 사용자 프로필
-    DUPLICATE_EMAIL(HttpStatus.CONFLICT, "USER_4001", "이미 사용 중인 이메일입니다"),
-    DUPLICATE_NICKNAME(HttpStatus.CONFLICT, "USER_4002", "이미 사용 중인 닉네임입니다"),
+    DUPLICATE_EMAIL(HttpStatus.CONFLICT, "USER_409", "이미 사용 중인 이메일입니다"),
+    JOB_GROUP_NOT_FOUND(HttpStatus.NOT_FOUND, "USER_404", "존재하지 않는 직군입니다"),
+    TECH_STACK_NOT_FOUND(HttpStatus.NOT_FOUND, "USER_404", "존재하지 않는 기술 스택입니다"),
+    LEVEL_NOT_FOUND(HttpStatus.NOT_FOUND, "USER_404", "존재하지 않는 레벨입니다"),
 
     // 검색
     PAGE_OUT_OF_RANGE(HttpStatus.BAD_REQUEST,"SEARCH_4001","요청한 페이지가 전체 페이지 수를 초과합니다."),
-    NO_RESULT(HttpStatus.NOT_FOUND,"SEARCH_40002","검색 결과가 없습니다."),
 
      // 기본 에러
     _BAD_REQUEST(HttpStatus.BAD_REQUEST, "COMMON_400", "잘못된 요청입니다."),
