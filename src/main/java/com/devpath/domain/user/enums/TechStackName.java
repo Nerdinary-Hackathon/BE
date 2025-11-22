@@ -11,22 +11,22 @@ public enum TechStackName {
     TypeScript("TypeScript"),
     Flutter("Flutter"),
 
-    Java("Java"),
-    Spring("Spring"),
-    Python("Python"),
-    Django("Django"),
-    NodeJS("Node.js"),
+    JAVA("Java"),
+    SPRING("Spring"),
+    PYTHON("Python"),
+    DJANGO("Django"),
+    NODEJS("Node.js"),
 
-    Figma("Figma"),
-    Photoshop("Photoshop"),
-    Sketch("Sketch"),
+    FIGMA("Figma"),
+    PHOTOSHOP("Photoshop"),
+    SKETCH("Sketch"),
     THREE_D("3D"),
-    Illustrator("Illustrator"),
+    ILLUSTRATOR("Illustrator"),
 
     AWS("AWS"),
-    Docker("Docker"),
-    Kubernetes("Kubernetes"),
-    Git("Git");
+    DOCKER("Docker"),
+    KUBERNETES("Kubernetes"),
+    GIT("Git");
 
     private final String description;
 
