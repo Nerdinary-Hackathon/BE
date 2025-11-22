@@ -30,7 +30,7 @@ public interface UserControllerDocs {
                         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "명함 목록 조회 성공"),
                         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "COMMON_404: 검색 결과가 없습니다.")
         })
-        ApiResponse<CursorResponseDto<CardPrevRes>> getCards(Long userId, String cursor, Integer size,
+        ApiResponse<CursorResponseDto<CardPrevRes>> getCards(Long userId, Long cursor, Integer size,
                         JobGroup jobGroup);
 
         @Operation(summary = "명함 교환", description = "명함 코드를 입력하면 명함이 교환됩니다.")

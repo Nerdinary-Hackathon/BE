@@ -52,14 +52,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
-    public CursorResponseDto<CardPrevRes> getCardPrevRes(Long userId, String cursor, Integer size,
+    public CursorResponseDto<CardPrevRes> getCardPrevRes(Long userId, Long cursor, Integer size,
             JobGroup jobGroup) {
-
-        Long cursorId = cursor != null ? Long.valueOf(cursor) : null;
 
         Pageable pageable = PageRequest.of(0, size, Sort.by(Sort.Direction.DESC, "id"));
 
-        Slice<Follow> followSlice = followRepository.findNextByCursor(userId, cursorId, jobGroup, pageable);
+        Slice<Follow> followSlice = followRepository.findNextByCursor(userId, cursor, jobGroup, pageable);
 
         Slice<CardPrevRes> result = followSlice.map(f -> UserConverter.toCardPrevRes(f.getFollower()));
 

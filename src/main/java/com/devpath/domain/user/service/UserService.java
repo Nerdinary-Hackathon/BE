@@ -27,7 +27,7 @@ public interface UserService {
      * @param jobGroup 필터링할 직군 (전체 조회 시 null)
      * @return 다음 커서 정보와 명함 목록이 담긴 DTO
      */
-    CursorResponseDto<CardPrevRes> getCardPrevRes(Long userId, String cursor, Integer size, JobGroup jobGroup);
+    CursorResponseDto<CardPrevRes> getCardPrevRes(Long userId, Long cursor, Integer size, JobGroup jobGroup);
 
     /**
      * 다른 사용자와 명함을 교환합니다.

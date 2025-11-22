@@ -47,7 +47,7 @@ public class UserController implements UserControllerDocs {
     @Override
     @GetMapping("/cards")
     public ApiResponse<CursorResponseDto<CardPrevRes>> getCards(@RequestHeader Long userId,
-            @RequestParam(required = false) String cursor,
+            @RequestParam(required = false) Long cursor,
             @RequestParam(required = false, defaultValue = "10") Integer size,
             @RequestParam(required = false) JobGroup jobGroup) {
         return ApiResponse.onSuccess(GeneralSuccessCode._OK,
