@@ -20,7 +20,7 @@ public class UserConverter {
                 .phoneNumber(user.getPhone())
                 .link(user.getLink())
                 .level(user.getLevel().toString())
-                .techStacks(techStacks.stream().map(TechStack::getTechStackName).map(TechStackName::getDescription).toList())
+                .techStacks(techStacks.stream().map(TechStack::getTechStackName).map(TechStackName::name).toList())
                 .build();
     }
 
