@@ -53,10 +53,13 @@ public class UserController implements UserControllerDocs{
 
     @Override
     @PostMapping("/profile")
-    public ApiResponse<UserProfileResponse> createProfile(
+    public ResponseEntity<ApiResponse<UserProfileResponse>> createProfile(
             @Valid @RequestBody UserProfileRequest request
     ) {
         User user = userService.createProfile(request);
-        return ApiResponse.onSuccess(GeneralSuccessCode._CREATED, UserProfileResponse.from(user));
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(
+                        ApiResponse.onSuccess(GeneralSuccessCode._CREATED, UserProfileResponse.from(user))
+                );
     }
 }

@@ -56,11 +56,11 @@ public interface UserControllerDocs {
             description = "사용자의 프로필 정보를 작성합니다. 모든 필드는 필수이며, 기술 스택은 최소 1개 이상 선택해야 합니다."
     )
     @ApiResponses({
-            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "프로필 작성 성공"),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "201", description = "프로필 작성 성공"),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "유효성 검증 실패"),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "409", description = "이미 존재하는 닉네임 또는 이메일")
     })
-    ApiResponse<UserProfileResponse> createProfile(
+    ResponseEntity<ApiResponse<UserProfileResponse>> createProfile(
             @io.swagger.v3.oas.annotations.parameters.RequestBody(
                     description = "프로필 작성 정보",
                     required = true,
