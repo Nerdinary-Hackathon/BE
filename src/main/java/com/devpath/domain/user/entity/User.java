@@ -49,9 +49,6 @@ public class User {
     @Column(name = "phone_number")
     private String phone;
 
-    @Column(name = "UUID")
-    private String uuid;
-
     @CreatedDate
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
