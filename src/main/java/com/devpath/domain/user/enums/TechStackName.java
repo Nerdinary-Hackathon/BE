@@ -6,10 +6,10 @@ import lombok.Getter;
 public enum TechStackName {
 
     REACT("React"),
-    VUE("Vue.js"),
-    NextJS("Next.js"),
-    TypeScript("TypeScript"),
-    Flutter("Flutter"),
+    VUEJS("Vue.js"),
+    NEXTJS("Next.js"),
+    TYPESCRIPT("TypeScript"),
+    FLUTTER("Flutter"),
 
     JAVA("Java"),
     SPRING("Spring"),
