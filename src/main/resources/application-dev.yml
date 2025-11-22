@@ -18,8 +18,4 @@ spring:
     database: mysql
 
 
-jwt:
-  secret: ${JWT_SECRET:qGlu/pNrD4GCBMDMIT5LX3Gxsgecg68AoQL85CI2UCY=}
-  expiration: 3600000
-
 
