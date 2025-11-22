@@ -4,12 +4,19 @@ import com.devpath.domain.user.dto.CardPrevDto;
 import com.devpath.domain.user.dto.MyCardDto;
 import com.devpath.domain.user.dto.UserProfileRequest;
 import com.devpath.domain.user.dto.UserProfileResponse;
+import com.devpath.domain.user.entity.User;
 import com.devpath.global.apiPayload.ApiResponse;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
+
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Tag(name = "User", description = "사용자 명함 관리 API")
 public interface UserControllerDocs {
@@ -55,4 +62,3 @@ public interface UserControllerDocs {
     );
 
 }
-
